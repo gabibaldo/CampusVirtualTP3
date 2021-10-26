@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Materias.cs" />
     <Compile Include="Provincias.cs" />
     <Compile Include="Paises.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

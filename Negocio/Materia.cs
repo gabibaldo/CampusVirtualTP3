@@ -7,47 +7,48 @@ using System.Threading.Tasks;
 
 namespace Negocio
 {
-    public class Pais
+    public class Materia
     {
         #region Propiedades
-        public int? IdPais { get; private set; }
-        public string Descripcion { get; private set; }
+        public int? IdMateria { get; set; }
+        public string Descripcion { get; set; }
         #endregion
 
 
         #region Constructores
-
-        public Pais()
+        public Materia()
         {
         }
-        
-        public Pais(int idPais, string descripcion)
+
+        public Materia(int idMateria, string descripcion)
         {
+            IdMateria = idMateria;
             Descripcion = descripcion;
-            IdPais = idPais;
         }
         #endregion
 
+
         #region Metodos publicos
 
-        public static List<Pais> Listar()
+        public static List<Materia> Listar()
         {
 
             DataTable dt = new DataTable();
-            dt = Datos.Paises.Listar();
-            List<Pais> listaPaises = new List<Pais>();
+            dt = Datos.Materias.Listar();
+            List<Materia> listaMaterias = new List<Materia>();
 
             foreach (DataRow item in dt.Rows)
             {
-                listaPaises.Add(ArmarDatos(item));
+                listaMaterias.Add(ArmarDatos(item));
             }
 
-            return listaPaises;
+            return listaMaterias;
         }
-        public static Pais Obtener(int idPais)
+        
+        public static Materia Obtener(int idMateria)
         {
             DataTable dt = new DataTable();
-            dt = Datos.Paises.Obtener(idPais);
+            dt = Datos.Materias.Obtener(idMateria);
 
             return ArmarDatos(dt.Rows[0]);
         }
@@ -66,17 +67,18 @@ namespace Negocio
             return listaPaises;
         }*/
 
-        public static void Eliminar(int idPais)
+        public static void Eliminar(int idMateria)
         {
-            Datos.Paises.Eliminar(idPais);
+            Datos.Paises.Eliminar(idMateria);
         }
+        
         public int Grabar()
         {
             try
             {
                 if (Validar(out string error))
                 {
-                    if (IdPais == null)
+                    if (IdMateria == null)
                     {
                         return Insertar();
                     }
@@ -100,12 +102,12 @@ namespace Negocio
 
         private int Insertar()
         {
-            return Datos.Paises.Insertar(Descripcion);
+            return Datos.Materias.Insertar(Descripcion);
         }
         private int Modificar()
         {
-            Datos.Paises.Modificar(IdPais.Value, Descripcion);
-            return IdPais.Value;
+            Datos.Materias.Modificar(IdMateria.Value, Descripcion);
+            return IdMateria.Value;
         }
         private bool Validar(out string error)
         {
@@ -119,13 +121,13 @@ namespace Negocio
             else
                 return false;               
         }
-        private static Pais ArmarDatos(DataRow item)
+        private static Materia ArmarDatos(DataRow item)
         {
-            Pais pais = new Pais();
-            pais.IdPais = Convert.ToInt32(item["IdPais"]);
-            pais.Descripcion = item["Descripcion"].ToString();
+            Materia materia = new Materia();
+            materia.IdMateria = Convert.ToInt32(item["IdMateria"]);
+            materia.Descripcion = item["Descripcion"].ToString();
             
-            return pais;
+            return materia;
         }
         #endregion
     }

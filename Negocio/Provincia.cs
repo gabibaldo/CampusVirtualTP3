@@ -14,6 +14,7 @@ namespace Negocio
         public string Descripcion { get; private set; }
         #endregion
 
+
         #region Constructores
 
         public Provincia()
@@ -26,6 +27,7 @@ namespace Negocio
             IdProvincia = idProvincia;
         }
         #endregion
+
 
         #region Metodos publicos
         public static List<Provincia> Listar()
@@ -51,7 +53,7 @@ namespace Negocio
             return ArmarDatos(dt.Rows[0]);
         }
 
-        public static List<Provincia> Buscar(string descripcion)
+        /*public static List<Provincia> Buscar(string descripcion)
         {
             DataTable dt = new DataTable();
             dt = Datos.Provincias.Buscar(descripcion);
@@ -63,7 +65,7 @@ namespace Negocio
             }
 
             return listaProvincias;
-        }
+        }*/
 
         public static void Eliminar(int idProvincia)
         {
@@ -110,7 +112,6 @@ namespace Negocio
             else
                 return true;
         }
-
         private static Provincia ArmarDatos(DataRow item)
         {
             Provincia Provincia = new Provincia();
